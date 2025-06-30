@@ -7,7 +7,6 @@ let salarioBruto = readline.questionFloat("Digite seu Salário Bruto: ");
 let adicionalNoturno = readline.questionFloat("Digite seu Adicional Noturno: ");
 let horaExtras = readline.questionFloat("Digite suas Horas Extras: ");
 let descontos = readline.questionFloat("Digite o Descontos: ");
-
 let salarioLiquido = salarioBruto + adicionalNoturno + (horaExtras * 5) - descontos;
 
 //Saida 

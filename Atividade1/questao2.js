@@ -1,4 +1,4 @@
-// git 
+//Importando readline
 const readline = require('readline-sync');
 
 //Entrada
