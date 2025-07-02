@@ -47,7 +47,6 @@ switch (item) {
 
     default:
         console.log("Codigo invalido!");
-        return;
 }
 //calculo 
 let total = preco * quantidade
