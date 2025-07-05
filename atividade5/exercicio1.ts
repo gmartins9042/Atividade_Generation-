@@ -1,48 +1,45 @@
-import readLine = require("readline-sync");
-import { Queue } from "./queueMetodos";
+import readlineSync from "readline-sync";
+import { Queue } from "./queueMetodos"; // ajuste o caminho se necessário
 
-// Cria a fila de clientes
-const filaClientes = new Queue<string>();
-
+const filaDeClientes = new Queue<string>();
 let opcao: number;
 
 do {
-    console.log("\n***************************************");
+    console.log("*************************************");
     console.log("1 - Adicionar Cliente na Fila");
     console.log("2 - Listar todos os Clientes");
     console.log("3 - Retirar Cliente da Fila");
     console.log("0 - Sair");
-    console.log("***************************************");
-
-    opcao = readLine.questionInt("Digite uma opção: ");
+    console.log("*************************************");
+    opcao = parseInt(readlineSync.question("Entre com a opcao desejada: "));
 
     switch (opcao) {
         case 1:
-            const nome = readLine.question("Digite o nome: ");
-            filaClientes.enqueue(nome);
+            const cliente = readlineSync.question("Digite o nome do cliente: ");
+            filaDeClientes.enqueue(cliente);
             console.log("\nFila:");
-            filaClientes.list().forEach((cliente) => console.log(cliente));
-            console.log("\nCliente Adicionado!");
+            filaDeClientes.printQueue();
+            console.log("\nCliente Adicionado!\n");
             break;
 
         case 2:
-            const clientes = filaClientes.list();
-            if (clientes.length === 0) {
-                console.log("\nA Fila está vazia!");
+            if (filaDeClientes.isEmpty()) {
+                console.log("\nA fila está vazia!\n");
             } else {
                 console.log("\nLista de Clientes na Fila:");
-                clientes.forEach((cliente) => console.log(cliente));
+                filaDeClientes.printQueue();
+                console.log();
             }
             break;
 
         case 3:
-            if (filaClientes.isEmpty()) {
-                console.log("\nA Fila está vazia!");
+            if (filaDeClientes.isEmpty()) {
+                console.log("\nA fila está vazia!\n");
             } else {
-                filaClientes.dequeue();
+                filaDeClientes.dequeue();
                 console.log("\nFila:");
-                filaClientes.list().forEach((cliente) => console.log(cliente));
-                console.log("\nO Cliente foi Chamado!");
+                filaDeClientes.printQueue();
+                console.log("\nO Cliente foi Chamado!\n");
             }
             break;
 
@@ -51,7 +48,7 @@ do {
             break;
 
         default:
-            console.log("\nOpção inválida. Tente novamente.");
+            console.log("\nOpcao invalida, tente novamente!\n");
+            break;
     }
-
 } while (opcao !== 0);

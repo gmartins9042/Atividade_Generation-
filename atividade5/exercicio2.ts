@@ -1,33 +1,55 @@
-import { Stack } from "./stackMedotos.ts";
 
-const pilha = new Stack<string>();
+import readlineSync from "readline-sync";
+import  {Stack}  from "./stackMedotos"; 
 
-pilha.push("Prato Verde");
-pilha.push("Prato Azul");
-pilha.push("Prato Branco");
-pilha.push("Prato Amarelo");
-pilha.push("Prato Vermelho");
+const pilhaDeLivros = new Stack<string>();
+let opcao: number;
 
-console.log("\nExibir todos os Elementos da pilha: ");
-pilha.printStack();
+do {
+    console.log("*************************************");
+    console.log("1 - Adicionar Livro na pilha");
+    console.log("2 - Listar todos os Livros");
+    console.log("3 - Retirar Livro da pilha");
+    console.log("0 - Sair");
+    console.log("*************************************");
+    opcao = parseInt(readlineSync.question("Entre com a opcao desejada: "));
 
-console.log("\nRemover Elemento: " + pilha.pop());
+    switch (opcao) {
+        case 1:
+            const livro = readlineSync.question("Digite o nome do livro: ");
+            pilhaDeLivros.push(livro);
+            console.log("\nPilha:");
+            pilhaDeLivros.printStack();
+            console.log("\nLivro adicionado!\n");
+            break;
 
-console.log("\nExibir todos os Elementos da pilha: ");
-pilha.printStack();
+        case 2:
+            if (pilhaDeLivros.isEmpty()) {
+                console.log("\nA pilha está vazia!\n");
+            } else {
+                console.log("\nLista de Livros na Pilha:");
+                pilhaDeLivros.printStack();
+                console.log();
+            }
+            break;
 
-console.log("\nAdicionar Elemento: ");
-pilha.push("Prato Roxo");
+        case 3:
+            if (pilhaDeLivros.isEmpty()) {
+                console.log("\nA pilha está vazia!\n");
+            } else {
+                pilhaDeLivros.pop();
+                console.log("\nPilha:");
+                pilhaDeLivros.printStack();
+                console.log("\nUm Livro foi retirado da pilha!\n");
+            }
+            break;
 
-console.log("\nExibir todos os Elementos da pilha: ");
-pilha.printStack();
+        case 0:
+            console.log("\nPrograma Finalizado!");
+            break;
 
-console.log("\nExibir o Primeiro Elemento da pilha: " + pilha.peek());
-console.log("\nExibir o Tamanho da pilha: " + pilha.count());
-console.log("\nChecar se o Elemento Prato Verde existe na pilha? " + pilha.contains("Prato Verde"));
-console.log("\nChecar se o Elemento Prato Verde Limão existe na pilha? " + pilha.contains("Prato Verde Limão"));
-
-console.log("\nLimpar a pilha");
-pilha.clear();
-
-console.log("\nA pilha está vazia? " + pilha.isEmpty());
+        default:
+            console.log("\nOpcao invalida, tente novamente!\n");
+            break;
+    }
+} while (opcao !== 0);
