@@ -1,5 +1,5 @@
 import readlineSync from "readline-sync";
-import { Queue } from "./queueMetodos"; // ajuste o caminho se necessário
+import { Queue } from "../queueMetodos"; // ajuste o caminho se necessário
 
 const filaDeClientes = new Queue<string>();
 let opcao: number;

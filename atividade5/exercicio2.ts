@@ -1,6 +1,6 @@
 
 import readlineSync from "readline-sync";
-import  {Stack}  from "./stackMedotos"; 
+import  {Stack}  from "../stackMedotos"; 
 
 const pilhaDeLivros = new Stack<string>();
 let opcao: number;
